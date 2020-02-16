@@ -14,7 +14,9 @@ class Partida extends Model
     ];
 
     public  function jogadores(){
-        return $this->belongsTo(Jogador::class, 'jogadores_relacionados')->using(Jogador::class)->withPivot(posicao_id);
+        return $this->belongsTo(Jogador::class,
+            'jogadores_relacionados')->using(Jogador::class)
+            ->withPivot(posicao_id);
     }
 
 }
