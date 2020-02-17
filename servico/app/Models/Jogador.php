@@ -9,18 +9,12 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Jogador extends Pivot
 {
+    protected  $table = "jogadores";
     protected $fillable = [
         'nome', 'idade', 'posicao_id'
     ];
 
 
-    /**
-     * @return BelongsTo
-     */
-    public function partida()
-    {
-        return $this->belongsTo(Partida::class, 'partida_id');
-    }
 
     /**
      * @return BelongsTo

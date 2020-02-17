@@ -17,12 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::apiResource('posicoes', 'PosicaoCntroller')->parameters([
-//   'posicoes' => 'posicao'
-//]);
+Route::apiResource('posicoes', 'PosicaoController')->parameters([
+   'posicoes' => 'posicao'
+]);
 //
 //ute::apiResource('partidas', 'PartidaController');
 //
-//Route::apiResource('jogadores', 'JogadorController');
+Route::apiResource('jogadores', 'JogadorController');
 //
 //Route::post('partidas/{partida}/associar', 'PartidaController@associarJogador');

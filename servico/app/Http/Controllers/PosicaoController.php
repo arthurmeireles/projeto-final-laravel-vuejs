@@ -16,7 +16,9 @@ class PosicaoController extends Controller
     }
 
     public function store(Request $request){
-        $data = $this->validate($request, ['posicao'=>'required']);
+        $data = $this->validate($request, [
+            'nome' => 'required'
+        ]);
         $posicao = Posicao::create($data);
         return $posicao;
     }
