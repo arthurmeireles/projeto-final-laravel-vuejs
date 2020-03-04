@@ -1,19 +1,12 @@
 <template>
-    <div class="header py-4">
+    <nav class="navbar nav bg-dark">
         <div class="container">
-            <div class="d-flex">
+            <div class="d-flex menu-arthur">
                 <a class="header-brand" href="#">
                     <img :src="logo" class="header-brand-img" alt="Portal">
                 </a>
-                <div class="d-flex order-lg-2 ml-auto">
+                <div class="d-flex">
                     <div class="dropdown">
-                        <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                            <span :style="avatarStyle" class="avatar mr-3 align-self-center" />
-                            <span class="ml-2 d-none d-lg-block">
-                              <span class="text-default">Pesquisador NAVI</span>
-                              <small class="text-muted d-block mt-1">Administrador</small>
-                            </span>
-                        </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                             <a class="dropdown-item" href="#">
                                 <i class="dropdown-icon fe fe-user"></i> Profile
@@ -43,11 +36,11 @@
                 </a>
             </div>
         </div>
-    </div>
+    </nav>
 </template>
 
 <script>
-    import LogoNavi from '../../assets/logo-navi.svg';
+    import Flamengo from '../../assets/flamengo.png';
     import LogoNaviSemTexto from '../../assets/logo-navi-sem-texto.png';
 
 
@@ -55,7 +48,7 @@
         name: "TopHeader",
         data() {
             return {
-                logo: LogoNavi
+                logo: Flamengo
             }
         },
         computed: {
@@ -66,6 +59,9 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+    .menu-arthur{
+        width: 100%;
+        justify-content: center;
+    }
 </style>

@@ -12,7 +12,16 @@ class PartidaController extends Controller
 {
 
     public function index(){
-        return response()->json(Partida::paginate(20));
+        return response()->json(Partida::with('jogadores')->paginate(20));
+    }
+
+    public function store(Request $request){
+        $data = $this->validate($request, [
+            'titulo'=>'required',
+            'descricao' => 'required'
+        ]);
+        $partida = Partida::create($data);
+        return $partida;
     }
 
     public function show(Partida $partida){
@@ -23,7 +32,6 @@ class PartidaController extends Controller
         $data = $this->validate($request,[
             'titulo' => 'sometimes',
             'descricao' => 'sometimes',
-            'jogadores' => 'sometimes|exists:jogadores,id'
         ]);
     }
 
@@ -33,14 +41,11 @@ class PartidaController extends Controller
 
     public function associarJogador(Partida $partida, Request $request)
     {
-        $data = $this->validate($request, [
-            'jogador_id' => 'required|exists:jogadores,id',
-            'posicao_id' => 'required|exists:posicoes,id'
+        $this->validate($request, [
+            'jogador_id' => 'required|exists:jogadores,id'
         ]);
 
-        $partida->jogadores()->attach($data['jogador_id'], [
-            'posicao_id' => $data['posicao_id']
-        ]);
+        $partida->jogadores()->attach($request->get('jogador_id'));
 
         $partida->load('jogadores');
 

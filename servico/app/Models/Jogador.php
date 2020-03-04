@@ -14,13 +14,16 @@ class Jogador extends Pivot
         'nome', 'idade', 'posicao_id'
     ];
 
-
-
     /**
      * @return BelongsTo
      */
     public function posicao()
     {
         return $this->belongsTo(Posicao::class, 'posicao_id');
+    }
+
+    public function partidas()
+    {
+        return $this->belongsToMany(Partida::class, 'jogadores_partidas', 'jogador_id');
     }
 }

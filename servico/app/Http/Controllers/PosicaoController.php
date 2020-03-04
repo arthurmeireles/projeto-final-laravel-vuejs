@@ -12,7 +12,7 @@ class PosicaoController extends Controller
 {
     public function index()
     {
-        return response()->json(Posicao::orderBy('posicao')->paginate(20));
+        return response()->json(Posicao::orderBy('posicoes')->paginate(20));
     }
 
     public function store(Request $request){

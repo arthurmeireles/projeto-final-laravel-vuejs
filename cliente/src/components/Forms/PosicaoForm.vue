@@ -8,7 +8,7 @@
                 <form action="">
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input v-model="papel.nome" id="nome" type="text" class="form-control" />
+                        <input v-model="posicao.nome" id="nome" type="text" class="form-control" />
                     </div>
                 </form>
                 <button @click.prevent="tratarSubmissao" class="btn btn-outline-primary">{{ textosCard.botao }}</button>
@@ -24,9 +24,9 @@
     const MODO_CRIACAO = "criacao"
     const MODO_EDICAO = "edicao"
     export default {
-        name: "PapelForm",
+        name: "PosicaoForm",
         props: {
-            papelId: {
+            posicaoId: {
                 type: Number,
                 default: null
             },
@@ -37,42 +37,42 @@
         },
         data() {
             return {
-                papel: {
-                    nome: null
+                posicao: {
+                    nome: ''
                 }
             }
         },
         mounted() {
             if (this.modo === MODO_EDICAO) {
-                this.resgatarPapel()
+                this.resgatarPosicao()
             }
         },
         computed: {
             textosCard() {
                 return this.modo === MODO_CRIACAO ?
                     {
-                        titulo: "Criação de papéis",
+                        titulo: "Criação de posições",
                         botao: "Criar"
                     } :
                     {
-                        titulo: "Edição de papéis",
+                        titulo: "Edição de posições",
                         botao: "Atualizar"
                     }
             },
             tituloCard() {
-                return this.modo === MODO_CRIACAO ? "Criação de papéis" : "Edição de papéis"
+                return this.modo === MODO_CRIACAO ? "Criação de posições" : "Edição de posições"
             },
         },
         methods: {
             tratarSubmissao() {
                 if (this.modo === MODO_CRIACAO) {
-                    this.criarPapel()
+                    this.criarPosicao()
                 } else if (this.modo === MODO_EDICAO) {
-                    this.editarPapel()
+                    this.editarPosicao()
                 }
             },
-            criarPapel() {
-                fetch(`${BASE_URL}/papeis`, {
+            criarPosicao() {
+                fetch(`${BASE_URL}/posicoes`, {
                     method: "post",
                     headers: {
                         'Accept': 'application/json',
@@ -80,18 +80,16 @@
                     },
 
                     //make sure to serialize your JSON body
-                    body: JSON.stringify(this.papel)
+                    body: JSON.stringify(this.posicao)
                 })
                     .then( (response) => {
                         window.console.log(response)
-
-                        Swal.fire('Papel criado com sucesso!', '', 'success')
-
-                        return this.$router.push({ name: 'papeis' })
+                        Swal.fire('Posição criada com sucesso!', '', 'success')
+                        return this.$router.push({ name: 'posicoes' })
                     });
             },
-            editarPapel() {
-                fetch(`${BASE_URL}/papeis/${this.papelId}`, {
+            editarPosicao() {
+                fetch(`${BASE_URL}/posicoes/${this.posicaoId}`, {
                     method: "put",
                     headers: {
                         'Accept': 'application/json',
@@ -99,23 +97,31 @@
                     },
 
                     //make sure to serialize your JSON body
-                    body: JSON.stringify(this.papel)
+                    body: JSON.stringify(this.posicao)
                 })
                     .then( (response) => {
                         window.console.log(response)
 
-                        Swal.fire('Papel editado com sucesso!', '', 'success')
+                        Swal.fire('Posição editada com sucesso!', '', 'success')
 
-                        return this.$router.push({ name: 'papeis' })
+                        return this.$router.push({ name: 'posicoes' })
                     });
+
             },
-            resgatarPapel() {
+            data() {
+                return {
+                    posicao: {
+                        nome: ''
+                    }
+                }
+            },
+            resgatarPosicao() {
                 const vm = this
-                fetch(`${BASE_URL}/papeis/${this.papelId}`)
+                fetch(`${BASE_URL}/posicoes/${this.posicaoId}`)
                     .then(function(response) {
                         response.json()
-                            .then(function (papel) {
-                                vm.papel = papel
+                            .then(function (posicao) {
+                                vm.posicao = posicao
                             })
                     })
             }

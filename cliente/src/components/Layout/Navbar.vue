@@ -4,25 +4,25 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg order-lg-first">
-                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                        <ul class="nav nav-tabs justify-content-center border-0 flex-column flex-lg-row">
                             <li class="nav-item">
-                                <router-link to="/" class="nav-link" exact-active-class="active">
+                                <router-link to="/" class="nav-link" exact-active-class="">
                                     Página inicial
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/papeis" class="nav-link" exact-active-class="active">
-                                    Papéis
+                                <router-link to="/posicoes" class="nav-link" exact-active-class="active">
+                                    Posicões
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/projetos" class="nav-link" exact-active-class="active">
-                                    Projetos
+                                <router-link to="/partidas" class="nav-link" exact-active-class="active">
+                                    Partidas
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/usuarios" class="nav-link" exact-active-class="active">
-                                    Usuários
+                                <router-link to="/jogadores" class="nav-link" exact-active-class="active">
+                                    Jogadores
                                 </router-link>
                             </li>
                         </ul>
@@ -41,5 +41,13 @@
 </script>
 
 <style scoped>
-
+.header{
+    background-color: #c22a1e;
+}
+    ul li a{
+        color: white !important;
+    }
+    body{
+        font-family: Rajdhani, sans-serif;
+    }
 </style>

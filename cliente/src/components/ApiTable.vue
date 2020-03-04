@@ -102,7 +102,7 @@ import Swal from "sweetalert2";
             },
             deletarRegistro(id) {
                 const vm = this
-                fetch(`${BASE_URL}/papeis/${id}`, {
+                fetch(`${BASE_URL}/posicoes/${id}`, {
                     method: "delete",
                     headers: {
                         'Accept': 'application/json',

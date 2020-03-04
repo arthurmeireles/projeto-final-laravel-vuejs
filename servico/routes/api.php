@@ -21,8 +21,8 @@ Route::apiResource('posicoes', 'PosicaoController')->parameters([
    'posicoes' => 'posicao'
 ]);
 //
-//ute::apiResource('partidas', 'PartidaController');
+Route::apiResource('partidas', 'PartidaController');
 //
 Route::apiResource('jogadores', 'JogadorController');
 //
-//Route::post('partidas/{partida}/associar', 'PartidaController@associarJogador');
+Route::post('partidas/{partida}/associar', 'PartidaController@associarJogador');

@@ -1,14 +1,14 @@
 <template>
     <div class="col-12">
-        <PapelForm />
+        <PosicaoForm />
     </div>
 </template>
 
 <script>
-    import PapelForm from "../../Forms/PapelForm";
+    import PosicaoForm from "../../Forms/PosicaoForm";
     export default {
         name: "Create",
-        components: {PapelForm}
+        components: {PosicaoForm}
     }
 </script>
 

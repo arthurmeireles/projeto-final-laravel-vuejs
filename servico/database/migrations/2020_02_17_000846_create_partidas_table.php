@@ -15,7 +15,8 @@ class CreatePartidasTable extends Migration
     {
         Schema::create('partidas', function (Blueprint $table) {
             $table->bigIncrements('id');
-
+            $table->string('titulo');
+            $table->string('descricao');
             $table->timestamps();
         });
     }

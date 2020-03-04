@@ -1,16 +1,16 @@
 <template>
     <div class="col-12">
-        <PapelForm :papel-id="papelId" modo="edicao" />
+        <JogadorForm :jogador-id="jogadorId" modo="edicao" />
     </div>
 </template>
 
 <script>
-    import PapelForm from "../../Forms/PapelForm";
+    import JogadorForm from "../../Forms/JogadorForm";
     export default {
         name: "Edit",
-        components: {PapelForm},
+        components: {JogadorForm},
         computed: {
-            papelId() {
+            jogadorId() {
                 return this.$route.params.id
             }
         }

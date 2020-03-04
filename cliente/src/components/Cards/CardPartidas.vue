@@ -1,21 +1,21 @@
 <template>
     <div class="card">
-        <div class="card-status bg-green"></div>
+        <div class="card-status bg-purple"></div>
         <div class="card-header">
-            <h3 class="card-title">Usuários</h3>
+            <h3 class="card-title">Partidas</h3>
         </div>
-        <ApiTable :campos-excluidos="camposExcluidos" recurso="usuarios"/>
+        <ApiTable :campos-excluidos="camposExcluidos" recurso="partidas"/>
     </div>
 </template>
 
 <script>
     import ApiTable from "../ApiTable";
     export default {
-        name: "CardUsuarios",
+        name: "CardPartidas",
         components: {ApiTable},
         data() {
             return {
-                camposExcluidos: ["email_verified_at", "updated_at"]
+                camposExcluidos: ["created_at", "updated_at"]
             }
         }
     }

@@ -1,11 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Pages/Home"
-import Papeis from "../components/Pages/Papeis"
-import Projetos from "../components/Pages/Projetos"
-import Usuarios from "../components/Pages/Usuarios"
-import PapeisCreate from "../components/Pages/Papeis/Create"
-import PapeisEdit from "../components/Pages/Papeis/Edit"
+import Posicoes from "../components/Pages/Posicoes"
+import PosicaoForm from "../components/Forms/PosicaoForm"
+import Partidas from "../components/Pages/Partidas"
+import Jogadores from "../components/Pages/Jogadores"
+import JogadorForm from "../components/Forms/JogadorForm"
+import PosicoesEdit from "../components/Pages/Posicoes/Edit"
+import JogadoresEdit from "../components/Pages/Jogadores/Edit"
+
+
 
 Vue.use(VueRouter);
 
@@ -19,39 +23,44 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: '/papeis',
-            name: 'papeis',
-            component: Papeis
+            path: '/posicoes',
+            name: 'posicoes',
+            component: Posicoes
         },
         {
-            path: '/papeis/create',
-            name: 'papeis.create',
-            component: PapeisCreate
+            path: '/posicoes/create',
+            name: 'posicoes.create',
+            component: PosicaoForm
         },
         {
-            path: '/papeis/:id/edit',
-            name: 'papeis.edit',
-            component: PapeisEdit
+            path: '/posicoes/:id/edit',
+            name: 'posicoes.edit',
+            component: PosicoesEdit
         },
         {
-            path: '/projetos',
-            name: 'projetos',
-            component: Projetos
+            path: '/partidas',
+            name: 'partidas',
+            component: Partidas
         },
         {
-            path: '/projetos/:id/edit',
-            name: 'projetos.edit',
-            component: Projetos
+            path: '/partidas/:id/edit',
+            name: 'partidas.edit',
+            component: Partidas
         },
         {
-            path: '/usuarios',
-            name: 'usuarios',
-            component: Usuarios
+            path: '/jogadores',
+            name: 'jogadores',
+            component: Jogadores
         },
         {
-            path: '/usuarios/:id/edit',
-            name: 'usuarios.edit',
-            component: Usuarios
+            path: '/jogadores/create',
+            name: 'jogadores.create',
+            component: JogadorForm
+        },
+        {
+            path: '/jogadores/:id/edit',
+            name: 'jogadores.edit',
+            component: JogadoresEdit
         },
 
     ]

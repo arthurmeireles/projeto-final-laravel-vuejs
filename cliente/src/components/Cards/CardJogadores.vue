@@ -2,21 +2,21 @@
     <div class="card">
         <div class="card-status bg-teal"></div>
         <div class="card-header">
-            <h3 class="card-title">Papéis</h3>
+            <h3 class="card-title">Jogadores</h3>
             <div class="card-options">
-                <router-link to="/papeis/create" class="btn btn-primary btn-sm">
+                <router-link :to="{ name: 'jogadores.create' }" class="btn btn-primary btn-sm">
                     Criar novo
                 </router-link>
             </div>
         </div>
-        <ApiTable :traducao-campos="traducaoCampos" :campos-excluidos="camposExcluidos" recurso="papeis"/>
+        <ApiTable :traducao-campos="traducaoCampos" :campos-excluidos="camposExcluidos" recurso="jogadores"/>
     </div>
 </template>
 
 <script>
     import ApiTable from "../ApiTable";
     export default {
-        name: "CardPapeis",
+        name: "CardJogadores",
         components: {ApiTable},
         data() {
             return {
