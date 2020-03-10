@@ -101,8 +101,9 @@ import Swal from "sweetalert2";
                 this.carregarDados()
             },
             deletarRegistro(id) {
+                parseInt(id)
                 const vm = this
-                fetch(`${BASE_URL}/posicoes/${id}`, {
+                fetch('${BASE_URL}/posicoes/${id}', {
                     method: "delete",
                     headers: {
                         'Accept': 'application/json',
