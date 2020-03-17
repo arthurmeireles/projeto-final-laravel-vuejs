@@ -1,14 +1,14 @@
 <template>
     <div class="col-12">
-        <PartidasForm :partidas-id="partidaId" modo="edicao" />
+        <PartidaForm :partidas-id="partidaId" modo="edicao" />
     </div>
 </template>
 
 <script>
-    import PartidasForm from "../../Forms/PartidasForm";
+    import PartidaForm from "../../Forms/PartidaForm";
     export default {
         name: "Edit",
-        components: {PartidasForm},
+        components: {PartidaForm},
         computed: {
             partidaId() {
                 return this.$route.params.id

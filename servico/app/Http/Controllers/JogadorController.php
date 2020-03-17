@@ -23,8 +23,16 @@ class JogadorController extends Controller
         return $jogador;
     }
 
-    public function update(Request $request, Jogador $jogador){
-        $data = $this->validate ($request, ['nome' => 'required']);
+    public function update(Request $request, int $id){
+        $data = $this->validate ($request, ['nome' => 'required', 'idade' => 'required', 'posicao_id' => 'required']);
+
+
+
+        Jogador::where('id', $id)->update($data);
+        $jogador = Jogador::findOrFail($id);
+        
+        return response()->json($jogador);
+
     }
 
     public function show( $id){
@@ -32,7 +40,8 @@ class JogadorController extends Controller
         return response()->json($jogador);
     }
 
-    public function destroy(Jogador $jogador){
+    public function destroy(Int $id){
+        $jogador = Jogador::findOrFail($id);
         $jogador->delete();
         return response()->json($jogador);
     }

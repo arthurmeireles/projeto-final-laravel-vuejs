@@ -1,14 +1,14 @@
 <template>
     <div class="col-12">
-        <PartidasForm />
+        <PartidaForm />
     </div>
 </template>
 
 <script>
-    import PartidasForm from "../../Forms/PartidasForm";
+    import PartidaForm from "../../Forms/PartidaForm";
     export default {
         name: "Create",
-        components: {PartidasForm}
+        components: {PartidaForm}
     }
 </script>
 

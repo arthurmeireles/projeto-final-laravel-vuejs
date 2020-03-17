@@ -26,11 +26,21 @@ class PosicaoController extends Controller
         return response()->json($posicao);
     }
 
-    public function update(Request $request, Posicao $posicao){
-        $data = $this->validate ($request, ['posicao' => 'required']);
+    public function update(Request $request, int $id){
+        $data = $this->validate ($request, [
+            'nome' => 'required'
+        ]);
+
+        Posicao::where('id', $id)->update($data);
+        $posicao = Posicao::findOrFail($id);
+        
+        return response()->json($posicao);
+
     }
-    public function destroy(Posicao $posicao)
+
+    public function destroy(int $id)
     {
+        $posicao = Posicao::findOrFail($id);
         $posicao->delete();
         return response()->json($posicao);
     }

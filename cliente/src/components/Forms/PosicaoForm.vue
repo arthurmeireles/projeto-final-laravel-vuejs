@@ -124,7 +124,7 @@
                                 vm.posicao = posicao
                             })
                     })
-            }
+            },
         }
     }
 </script>
