@@ -7,20 +7,24 @@
             <div class="col-auto">
                 <form action="">
                     <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input v-model="jogador.nome" id="nome" type="text" class="form-control" />
+                        <label for="titulo">Titulo</label>
+                        <input v-model="partida.titulo" id="titulo" type="text" class="form-control" />
                     
-                        <label for="idade">Idade</label>
-                        <input v-model="jogador.idade" id="idade" type="text" class="form-control" />
+                        <label for="descricao">Descrição</label>
+                        <input v-model="partida.descricao" id="descricao" type="text" class="form-control" />
                     </div>
 
 
 
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1" v-model="jogador.posicao_id ">
-                                    <option :key="index" :value="posicao.id" v-for="(posicao, index) in items.data"> {{ posicao.nome}}</option>
-                            </select>
+                        <label>Escalação</label>
+                        .batata
+                        <input type="checkbox" v-model="jogadores" :value="jogadores.jogador_id">
+                        {{jogadores.jogador_nome}}
+                        
+                            <!--<select class="form-control" id="exampleFormControlSelect1" v-model="jogador.jogador_id ">
+                                    <option :key="index" :value="jogador.id" v-for="(jogador, index) in items.data"> {{ posicao.nome}}</option>
+                            </select>-->
                            <!--<select id ="meuForm"> 
                             //     <option :key="index" v-for="(chave, index) in items.data"> {{ item[chave].nome}}</option>
                             // </select>-->
@@ -39,9 +43,9 @@
     const MODO_CRIACAO = "criacao"
     const MODO_EDICAO = "edicao"
     export default {
-        name: "JogadorForm",
+        name: "PartidaForm",
         props: {
-            jogadorId: {
+            partidaId: {
                 type: Number,
                 default: null
             },
@@ -52,11 +56,22 @@
         },
         data() {
             return {
-                jogador: {
-                    nome: '',
-                    idade: '',
-                    posicao_id: ''
+                partida: {
+                    titulo: '',
+                    descricao: '',
+                    
                 },
+                jogadores_selecionados: [],
+                jogadores: [
+                    {
+                        jogador_id: 0,
+                        jogador_nome: '',
+                    },
+                    {
+                        jogador_id: 1,
+                        jogador_nome: '',
+                    },
+                ],
                 items: {
                     data: []
                 },
@@ -66,24 +81,24 @@
         },
         mounted() {
             if (this.modo === MODO_EDICAO) {
-                this.resgatarJogador()
+                this.resgatarPartida()
             }
-            this.carregarPosicoes()
+            this.carregarPartidas()
         },
         computed: {
             textosCard() {
                 return this.modo === MODO_CRIACAO ?
                     {
-                        titulo: "Criação de jogadores",
+                        titulo: "Criação de partidas",
                         botao: "Criar"
                     } :
                     {
-                        titulo: "Edição de jogadores",
+                        titulo: "Edição de partidas",
                         botao: "Atualizar"
                     }
             },
             tituloCard() {
-                return this.modo === MODO_CRIACAO ? "Criação de jogadores" : "Edição de jogadores"
+                return this.modo === MODO_CRIACAO ? "Criação de partidas" : "Edição de partidas"
             },
             chavesCabecalho() {
                 if (this.items.data.length > 0) {
@@ -99,13 +114,13 @@
         methods: {
             tratarSubmissao() {
                 if (this.modo === MODO_CRIACAO) {
-                    this.criarJogador()
+                    this.criarPartida()
                 } else if (this.modo === MODO_EDICAO) {
-                    this.editarJogador()
+                    this.editarPartida()
                 }
             },
-            criarJogador() {
-                fetch(`${BASE_URL}/jogadores`, {
+            criarPartida() {
+                fetch(`${BASE_URL}/partida`, {
                     method: "post",
                     headers: {
                         'Accept': 'application/json',
@@ -113,18 +128,18 @@
                     },
 
                     //make sure to serialize your JSON body
-                    body: JSON.stringify(this.jogador)
+                    body: JSON.stringify(this.partida)
                 })
                     .then( (response) => {
                         window.console.log(response)
 
-                        Swal.fire('Jogadores criada com sucesso!', '', 'success')
+                        Swal.fire('Partida criada com sucesso!', '', 'success')
 
-                        return this.$router.push({ name: 'jogadores' })
+                        return this.$router.push({ name: 'partidas' })
                     });
             },
-            editarJogador() {
-                fetch(`${BASE_URL}/jogadores/${this.jogadorId}`, {
+            editarPartida() {
+                fetch(`${BASE_URL}/partidas/${this.partidaId}`, {
                     method: "put",
                     headers: {
                         'Accept': 'application/json',
@@ -132,24 +147,24 @@
                     },
 
                     //make sure to serialize your JSON body
-                    body: JSON.stringify(this.jogador)
+                    body: JSON.stringify(this.partida)
                 })
                     .then( (response) => {
                         window.console.log(response)
 
-                        Swal.fire('Jogador editada com sucesso!', '', 'success')
+                        Swal.fire('Partida editada com sucesso!', '', 'success')
 
-                        return this.$router.push({ name: 'jogadores' })
+                        return this.$router.push({ name: 'partidas' })
                     });
             },
-            resgatarJogador() {
+            resgatarPartida() {
                 const vm = this
-                fetch(`${BASE_URL}/jogadores/${this.jogadorId}`)
+                fetch(`${BASE_URL}/partidas/${this.partidaId}`)
                     .then(function(response) {
                         response.json()
-                            .then(function (jogador) {
-                                parseInt(jogador)
-                                vm.jogador = jogador
+                            .then(function (partida) {
+                                parseInt(partida)
+                                vm.partida = partida
                             })
                     })
             },
@@ -164,9 +179,9 @@
                     })
             },
 
-            carregarPosicoes() {
+            carregarPartidas() {
                 const vm = this
-                fetch(`${BASE_URL}/posicoes?page=${this.paginaAtual}`)
+                fetch(`${BASE_URL}/partidas?page=${this.paginaAtual}`)
                     .then(function(response) {
                         response.json()
                             .then(function (items) {
